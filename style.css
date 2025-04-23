@@ -1,0 +1,359 @@
+:root {
+    --pink-light: #ffb6c1;
+    --pink-medium: #ff69b4;
+    --pink-dark: #ff1493;
+    --text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    touch-action: manipulation;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffecef 100%);
+  }
+  
+  .color {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s ease;
+  }
+  
+  #counter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: "Lato", sans-serif;
+    color: var(--pink-dark);
+    font-size: 1em;
+    opacity: 0.9;
+    background: rgba(255,255,255,0.7);
+    padding: 8px 12px;
+    border-radius: 20px;
+    box-shadow: var(--text-shadow);
+  }
+  
+  #message {
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    font-family: "Dancing Script", cursive;
+    color: var(--pink-dark);
+    padding: 0 12%;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+    text-shadow: var(--text-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    background: transparent;
+    border-radius: 15px;
+    padding: 20px;
+  }
+  
+  #theButton {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, var(--pink-medium), var(--pink-dark));
+    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    outline: none;
+  }
+  
+  #theButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(255, 20, 147, 0.4);
+  }
+  
+  #theButton:active {
+    transform: translateY(1px);
+  }
+  
+  .heart-icon {
+    font-size: 1.2em;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .footer {
+    color: var(--pink-dark);
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    opacity: 0.8;
+    z-index: 10;
+  }
+  
+  .hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .heart {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    animation: float-up 4s ease-in forwards;
+    will-change: transform;
+  }
+  
+  @keyframes float-up {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .heart-beat {
+    animation: heartbeat 1.5s infinite;
+  }
+
+  /* Birthday Gift Styles */
+  #birthday-gift {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    text-align: center;
+    display: none;
+  }
+
+  .gift-box {
+    width: 150px;
+    height: 100px;
+    background: #ff6b8b;
+    position: relative;
+    cursor: pointer;
+    margin: 0 auto 15px;
+    box-shadow: 0 10px 25px rgba(255, 20, 147, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .gift-box:hover {
+    transform: scale(1.05);
+  }
+
+  .ribbon {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: #ff1493;
+    top: 40px;
+  }
+
+  .bow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #ff1493;
+    left: 55px;
+    top: 20px;
+    transform: rotate(45deg);
+  }
+
+  .bow:before, .bow:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #ff1493;
+    border-radius: 50%;
+  }
+
+  .bow:before {
+    left: -20px;
+    top: -20px;
+  }
+
+  .bow:after {
+    left: -20px;
+    top: 20px;
+  }
+
+  .gift-text {
+    font-family: "Dancing Script", cursive;
+    color: var(--pink-dark);
+    font-size: 1.5rem;
+    text-shadow: var(--text-shadow);
+    margin-top: 10px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    #message {
+      padding: 15px;
+      margin: 15px 20px;
+    }
+    
+    #theButton {
+      padding: 12px 25px;
+      margin: 20px auto;
+    }
+    
+    #counter {
+      top: 15px;
+      right: 15px;
+      font-size: 0.9em;
+    }
+
+    .gift-box {
+      width: 120px;
+      height: 80px;
+    }
+
+    .bow {
+      left: 40px;
+    }
+  }
+  /* Birthday Prompt Styles */
+.prompt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.birthday-prompt {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.birthday-prompt h3 {
+    color: #ff1493;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.birthday-prompt p {
+    font-family: 'Lato', sans-serif;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.birthday-select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #ffb6c1;
+    font-family: 'Lato', sans-serif;
+    flex: 1;
+    max-width: 150px;
+}
+
+#submit-birthday {
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#submit-birthday:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+}
+
+.prompt-error {
+    color: #ff6b6b;
+    font-family: 'Lato', sans-serif;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .birthday-prompt {
+        padding: 20px 15px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .birthday-select {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+/* Add to your style.css */
+.gift-box {
+    transition: all 0.3s ease;
+}
+
+.gift-box:active {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.6);
+}
