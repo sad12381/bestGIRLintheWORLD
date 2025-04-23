@@ -16,25 +16,31 @@ const giftElement = document.getElementById('birthday-gift');
 
 // Hearts animation
 function createHearts(count) {
-    const colors = ['#ff6b6b', '#ff8e8e', '#ffb6c1', '#ff69b4', '#ff1493'];
-    const container = document.getElementById('hearts');
-    
-    for (let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '❤';
-        
-        heart.style.cssText = `
-            font-size: ${Math.random() * 20 + 10}px;
-            color: ${colors[Math.floor(Math.random() * colors.length)]};
-            left: ${Math.random() * 100}%;
-            animation-duration: ${Math.random() * 3 + 2}s;
-            top: ${Math.random() * 20 + 70}%;
-        `;
-        
-        container.appendChild(heart);
-        setTimeout(() => heart.remove(), parseFloat(heart.style.animationDuration) * 1000);
-    }
+    // Mobile-friendly SVG heart confetti
+    const heartSVG = `
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#ff1493" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    `;
+  
+    // Adjust for mobile performance
+    const isMobile = window.innerWidth < 768;
+    const adjustedCount = isMobile ? Math.min(count, 10) : Math.min(count, 30);
+  
+    confetti({
+      particleCount: adjustedCount,
+      spread: 70,
+      origin: { y: 0.6 }, // Launch from bottom
+      shapes: ['svg'],
+      shapeOptions: {
+        svg: {
+          svg: heartSVG,
+          size: isMobile ? 10 : 15, // Smaller on mobile
+        }
+      },
+      colors: ['#ff1493', '#ff69b4', '#ff8e8e'], // Your color scheme
+      disableForReducedMotion: true // Respect accessibility
+    });
 }
 
 // Messages data
