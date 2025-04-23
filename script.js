@@ -14,34 +14,6 @@ const buttonElement = document.getElementById('theButton');
 const countElement = document.getElementById('count');
 const giftElement = document.getElementById('birthday-gift');
 
-// Hearts animation
-function createHearts(count) {
-    // Mobile-friendly SVG heart confetti
-    const heartSVG = `
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ff1493" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-      </svg>
-    `;
-  
-    // Adjust for mobile performance
-    const isMobile = window.innerWidth < 768;
-    const adjustedCount = isMobile ? Math.min(count, 10) : Math.min(count, 30);
-  
-    confetti({
-      particleCount: adjustedCount,
-      spread: 70,
-      origin: { y: 0.6 }, // Launch from bottom
-      shapes: ['svg'],
-      shapeOptions: {
-        svg: {
-          svg: heartSVG,
-          size: isMobile ? 10 : 15, // Smaller on mobile
-        }
-      },
-      colors: ['#ff1493', '#ff69b4', '#ff8e8e'], // Your color scheme
-      disableForReducedMotion: true // Respect accessibility
-    });
-}
 
 // Messages data
 const compliments = [
@@ -112,10 +84,7 @@ function newCompliment() {
         }, 2000);
     }
     
-    // Create hearts and button animation
-    createHearts(Math.min(clickCount, 15));
-    buttonElement.style.transform = 'scale(1.1)';
-    setTimeout(() => buttonElement.style.transform = 'scale(1)', 200);
+  
 
     // Show birthday prompt after 10 clicks
     if (clickCount === 5) {
@@ -195,7 +164,7 @@ function showPromptMessage(msg) {
 
 function showBirthdayGift() {
     giftElement.style.display = 'block';
-    createHearts(30);
+   
 }
 
 // FINAL FIX FOR YOUTUBE OPENING
@@ -222,12 +191,12 @@ function openGift() {
         <p>Enjoy your surprise, my love! ❤️</p>
         <p>Check your new tab...</p>
     `;
-    createHearts(50);
+   
 }
 
 // Initialize
 window.onload = function() {
-    createHearts(3);
+    
     
     // For testing only - uncomment next line
      setTimeout(() => { showBirthdayGift(); }, 1000);
